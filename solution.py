@@ -6,6 +6,8 @@
 def welcome_assignment_answers(question):
     # The student doesn't have to follow the skeleton for this assignment.
     # Another way to implement is using a "case" statements similar to C.
+    global answer
+    #trying to eliminate the error I keep getting
     if question == "Are encoding and encryption the same? - Yes/No":
         answer = "No"
     elif question == "Is it possible to decrypt a message without a key? - Yes/No":
