@@ -1,47 +1,58 @@
-# welcome_assignment_answers
-# Tamisha Davis - td2191
-# Input - All eight questions given in the assignment.
-# Output - The right answer for the specific question.
 
-def welcome_assignment_answers(question):
-    # The student doesn't have to follow the skeleton for this assignment.
-    # Another way to implement is using a "case" statements similar to C.
-    global answer
-    #trying to eliminate the error I keep getting
-    if question == "Are encoding and encryption the same? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decrypt a message without a key? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decode a message without a key? - Yes/No":
-        answer = "Yes"
-    elif question == "Is a hashed message supposed to be un-hashed? - Yes/No":
-        answer = "No"
-    elif question == "What is the MD5 hashing value to the following message: 'NYU Computer Networking' - Use MD5 hash generator and use the answer in your code":
-        answer = "42b76fe51778764973077a5a94056724"
-    elif question == "Is MD5 a secured hashing algorithm? - Yes/No":
-        answer = "No"
-    elif question == "What layer from the TCP/IP model the protocol DHCP belongs to? - The answer should be a numeric number":
-        answer = 5
-    elif question == "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number":
-        answer = 4
-    return answer
-# Complete all the questions.
+    #import socket module
+from socket import *
+import sys # In order to terminate the program
 
+def webServer(port=13331):
+   serverSocket = socket(AF_INET, SOCK_STREAM)
+
+   #Prepare a server socket
+   #Fill in start
+   serverSocket.bind('',port)
+   serverSocket.listen(1)
+   print('The server is ready to receive')
+   #Fill in end
+
+   while True:
+       #Establish the connection
+       print('Ready to serve...')
+       #Fill in start
+       connectionSocket,addr = serverSocket.accept()
+              #Fill in end
+       try:#Fill in start
+           message = "File to be opened will be HelloWorld"
+           #    #Fill in end
+           filename = message.split()[1]
+           f = open(filename[1:])
+           outputdata = "200 OK"
+           #Fill in start     #Fill in end
+
+           #Send one HTTP header line into socket
+           #Fill in start
+
+           #Fill in end
+           #Send the content of the requested file to the client
+       #for i in range(0, len(outputdata)):
+           connectionSocket.send(outputdata[i].encode())
+
+       #connectionSocket.send("\r\n".encode())
+       connectionSocket.close()
+   except IOError:
+   # Send response message for file not found (404)
+   # Fill in start
+   message = "File to be opened will be HelloWorld"
+   #    #Fill in end
+   filename = message.split()[1]
+   f = open(filename[1:])
+   outputdata = "404 Not Found"
+   # Fill in end
+
+   # Close client socket
+   # Fill in start
+
+   # Fill in end
+
+   serverSocket.close()
+   sys.exit()  # Terminate the program after sending the corresponding data
 if __name__ == "__main__":
-    # use this space to debug and verify that the program works
-    debug_question = "Are encoding and encryption the same? - Yes/No"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "Is it possible to decrypt a message without a key? - Yes/No"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "Is it possible to decode a message without a key? - Yes/No"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "Is a hashed message supposed to be un-hashed? - Yes/No"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "What is the MD5 hashing value to the following message: 'NYU Computer Networking' - Use MD5 hash generator and use the answer in your code"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "Is MD5 a secured hashing algorithm? - Yes/No"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "What layer from the TCP/IP model the protocol DHCP belongs to?- The answer should be a numeric number"
-    print(welcome_assignment_answers(debug_question))
-    debug_question = "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number"
-    print(welcome_assignment_answers(debug_question))
+     webServer(13331)
